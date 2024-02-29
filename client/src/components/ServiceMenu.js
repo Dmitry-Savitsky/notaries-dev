@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { updateService, deleteService } from "../http/ServicesApi.js";
+import { updateService, deleteService } from "../http/servicesApi.js";
 
 const ServiceMenu = ({ service, show, handleClose, handleServiceUpdate }) => {
   const [updatedService, setUpdatedService] = React.useState({ ...service });

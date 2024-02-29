@@ -1,29 +1,28 @@
-import Company from "./pages/CompanyPage";
-import ClientPage from "./pages/ClientPage";
-import ServicesPage from "./pages/ServicesPage";
+import Employees from "./pages/EmployeesPage";
+import Accounting from "./pages/AccountingPage";
+import Services from "./pages/ServicesPage";
 import Auth from "./pages/Auth";
 import Main from "./pages/MainPage";
 import FAQ from "./pages/FAQPage";
 
 import {
-  CLIENT_ROUTE,
-  COMPANY_ROUTE,
+  ACCOUNTING_ROUTE,
+  EMPLOYEES_ROUTE,
   FAQ_ROUTE,
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   SERVICES_ROUTE,
-  SERVICE_ROUTE,
   MAIN_ROUTE
 } from "./utils/consts";
 
 export const authRoutes = [
   {
-    path: COMPANY_ROUTE,
-    Component: Company,
+    path: EMPLOYEES_ROUTE,
+    Component: Employees,
   },
   {
-    path: CLIENT_ROUTE,
-    Component: ClientPage,
+    path: ACCOUNTING_ROUTE,
+    Component: Accounting,
   },
 ];
 
@@ -34,7 +33,7 @@ export const publicRoutes = [
   },
   {
     path: SERVICES_ROUTE,
-    Component: ServicesPage,
+    Component: Services,
   },
   {
     path: LOGIN_ROUTE,

@@ -1,32 +1,15 @@
 const Router = require(`express`)
-const router = new Router // создаем обьект роутера из экспресса
+const router = new Router
 
-const clientRouter = require(`./clientRouter`);
-const companyRouter = require(`./companyRouter`);
-const executorRouter = require(`./executorRouter`);
-const orderRouter = require(`./orderRouter`);
-const reviewRouter = require(`./reviewRouter`);
-const clientAddressRouter = require(`./clientAddressRouter`);
-
-//const registrationDataRouter = require(`./RegistrationDataRouter`);
-
-const userRouter = require(`./UserRouter`);
+const UserRouter = require(`./UserRouter`);
 const ServicesRouter = require(`./ServicesRouter`);
+const EmployeesRouter = require(`./EmployeesRouter`);
+const AccountingRouter = require(`./AccountingRouter`);
 
-//RegistrationData
-//registrationDataRouter
-//clientAddressRouter
 
-router.use(`/client`, clientRouter)
-router.use(`/company`, companyRouter)
-router.use(`/executor`, executorRouter)
-router.use(`/order`, orderRouter)
-router.use(`/review`, reviewRouter)
-router.use(`/clientaddress`, clientAddressRouter)
-
-// router.use(`/registrationdata`, registrationDataRouter)
-
-router.use(`/user`, userRouter)
+router.use(`/user`, UserRouter)
 router.use(`/services`, ServicesRouter)
+router.use(`/employees`, EmployeesRouter)
+router.use(`/accountings`, AccountingRouter)
 
 module.exports = router 

@@ -3,16 +3,17 @@ import { makeAutoObservable } from 'mobx';
 export default class UserStore {
 
   constructor() {
-    console.log('UserStore constructor called');
-    this._isAuth = false;
+    this._isAuth = localStorage.getItem('isAuth') === 'true';
     this._user = null;
     makeAutoObservable(this);
-}
+  }
+  
 
   setIsAuth(bool) {
-    console.log('Setting isAuth to:', bool);
     this._isAuth = bool;
-}
+    localStorage.setItem('isAuth', bool ? 'true' : 'false');
+  }
+
 
   setUser(user) {
     this._user = user;

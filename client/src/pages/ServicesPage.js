@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllServices, createService } from "../http/ServicesApi.js";
+import { getAllServices, createService } from "../http/servicesApi.js";
 import { observer } from "mobx-react-lite";
 import { jwtDecode } from 'jwt-decode';
 import ServiceCard from "../components/ServiceCard.js";

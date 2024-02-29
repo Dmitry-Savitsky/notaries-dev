@@ -77,14 +77,14 @@ const Services = sequelize.define('Services', {
   },
 });
 
-const Billings = sequelize.define('Billings', {
-  idBillings: {
+const Accountings = sequelize.define('Accountings', {
+  idAccounting: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
   },
-  BillingDate: {
+  AccountingDate: {
     type: DataTypes.DATE,
     allowNull: true,
   },
@@ -115,20 +115,20 @@ const Users = sequelize.define('Users', {
 Clients.hasMany(Users, { foreignKey: 'idClient' });
 Users.belongsTo(Clients, { foreignKey: 'idClient' });
 
-Clients.hasMany(Billings, { foreignKey: 'idClient' });
-Billings.belongsTo(Clients, { foreignKey: 'idClient' });
+Clients.hasMany(Accountings, { foreignKey: 'idClient' });
+Accountings.belongsTo(Clients, { foreignKey: 'idClient' });
 
-Employees.hasMany(Billings, { foreignKey: 'idEmployee' });
-Billings.belongsTo(Employees, { foreignKey: 'idEmployee' });
+Employees.hasMany(Accountings, { foreignKey: 'idEmployee' });
+Accountings.belongsTo(Employees, { foreignKey: 'idEmployee' });
 
-Services.hasMany(Billings, { foreignKey: 'idService' });
-Billings.belongsTo(Services, { foreignKey: 'idService' });
+Services.hasMany(Accountings, { foreignKey: 'idService' });
+Accountings.belongsTo(Services, { foreignKey: 'idService' });
 
 // Export models
 module.exports = {
   Clients,
   Employees,
   Services,
-  Billings,
+  Accountings,
   Users,
 };

@@ -1,5 +1,5 @@
-export const COMPANY_ROUTE = '/company'
-export const CLIENT_ROUTE = '/client'
+export const EMPLOYEES_ROUTE = '/employees'
+export const ACCOUNTING_ROUTE = '/accounting'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
 export const SERVICES_ROUTE = '/services'

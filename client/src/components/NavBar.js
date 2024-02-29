@@ -5,7 +5,15 @@ import Button from 'react-bootstrap/Button';
 import { observer } from 'mobx-react-lite';
 import { jwtDecode } from 'jwt-decode';
 import { Context } from '..';
-import { COMPANY_ROUTE, SERVICES_ROUTE, FAQ_ROUTE, LOGIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
+import {
+    ACCOUNTING_ROUTE,
+    EMPLOYEES_ROUTE,
+    FAQ_ROUTE,
+    LOGIN_ROUTE,
+    REGISTRATION_ROUTE,
+    SERVICES_ROUTE,
+    MAIN_ROUTE
+} from "../utils/consts";
 import { CLIENT_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,12 +23,15 @@ const NavBar = observer(() => {
 
     const token = localStorage.getItem('token');
     const decodedToken = token ? jwtDecode(token) : null;
-    const isAdmin = decodedToken && decodedToken.role === "Admin";
+    var isAdmin = decodedToken && decodedToken.role === "Admin";
 
     const logout = () => {
         user.setUser({});
         user.setIsAuth(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAuth');
         localStorage.clear();
+        isAdmin = false;
         navigate(MAIN_ROUTE);
     }
 
@@ -41,25 +52,46 @@ const NavBar = observer(() => {
                         {localStorage.getItem('isAuth') ?
                             <>
                                 {isAdmin &&
-                                    <Button
-                                        className="me-2"
-                                        style={{ fontSize: "18px", color: "white" }}
-                                        onClick={() => navigate(COMPANY_ROUTE)}
-                                        variant='outline-primary'
-                                    >
-                                        Панель компании
-                                    </Button>
+                                    <>
+                                        <Button
+                                            className="me-2"
+                                            style={{ fontSize: "18px", color: "white" }}
+                                            onClick={() => navigate(EMPLOYEES_ROUTE)}
+                                            variant='outline-primary'
+                                        >
+                                            Нотариусы
+                                        </Button>
+                                        <Button
+                                            className="me-2"
+                                            style={{ fontSize: "18px", color: "white" }}
+                                            onClick={() => navigate(ACCOUNTING_ROUTE)}
+                                            variant='outline-primary'
+                                        >
+                                            Учет услуг
+                                        </Button>
+                                    </>
                                 }
                                 {!isAdmin &&
-                                    <Button
-                                        className="me-2"
-                                        style={{ fontSize: "18px", color: "white" }}
-                                        onClick={() => navigate(CLIENT_ROUTE)}
-                                        variant='outline-primary'
-                                    >
-                                        Профиль
-                                    </Button>
+                                    <>
+                                        <Button
+                                            className="me-2"
+                                            style={{ fontSize: "18px", color: "white" }}
+                                            onClick={() => navigate(ACCOUNTING_ROUTE)}
+                                            variant='outline-primary'
+                                        >
+                                            Профиль
+                                        </Button>
+                                    </>
                                 }
+                                
+                                <Button
+                                    className="me-2"
+                                    style={{ fontSize: "18px", color: "white" }}
+                                    onClick={() => navigate(SERVICES_ROUTE)}
+                                    variant='outline-primary'
+                                >
+                                    Услуги
+                                </Button>
                                 <Button
                                     className="me-2"
                                     style={{ fontSize: "18px", color: "white" }}
@@ -70,13 +102,6 @@ const NavBar = observer(() => {
                                 </Button>
                                 <Button
                                     className="me-2"
-                                    style={{ fontSize: "18px", color: "white" }}
-                                    onClick={() => navigate(SERVICES_ROUTE)}
-                                    variant='outline-primary'
-                                >
-                                    Услуги
-                                </Button>
-                                <Button
                                     style={{ fontSize: "18px", color: "white" }}
                                     onClick={() => logout()}
                                     variant='outline-primary'
@@ -89,11 +114,21 @@ const NavBar = observer(() => {
                                 <Button
                                     className="me-2"
                                     style={{ fontSize: "18px", color: "white" }}
+                                    onClick={() => navigate(SERVICES_ROUTE)}
+                                    variant='outline-primary'
+                                >
+                                    Услуги
+                                </Button>
+
+                                <Button
+                                    className="me-2"
+                                    style={{ fontSize: "18px", color: "white" }}
                                     onClick={() => navigate(FAQ_ROUTE)}
                                     variant='outline-primary'
                                 >
                                     FAQ
                                 </Button>
+
                                 <Button
                                     className="me-2"
                                     style={{ fontSize: "18px", color: "white" }}
@@ -102,15 +137,7 @@ const NavBar = observer(() => {
                                 >
                                     Авторизация
                                 </Button>
-                                <Button
-                                    className="me-2"
-                                    style={{ fontSize: "18px", color: "white" }}
-                                    onClick={() => navigate(SERVICES_ROUTE)}
-                                    variant='outline-primary'
-                                >
-                                    Услуги
-                                </Button>
-                                
+
                             </>
                         }
                     </Nav>
